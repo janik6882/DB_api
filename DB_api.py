@@ -221,16 +221,14 @@ class API():
     def get_journey(self, id):
         # To use this function you must subscribe to https://api.deutschebahn.com/fahrplan-plus/v1
         """
-        Comment: Currently not Working
+        Comment: Gets journey details given the journey id
         Input: detailsId from get_departures or get_arrivals
         Output: details about a train
-        Special: Currently nor working
+        Special:
         """
-        return "Not Working due to server Problems"
         global Fahrplan_api
         request_link = "/journeyDetails/{}"
-        link = Fahrplan_api + request_link.format(id)
+        link = Fahrplan_api + request_link.format(id).replace('%', '%25') # replace % as %25 because of percent encoding
         r = requests.get(link, headers={"Authorization" : self.auth_token})
-        print r.content
         data = json.loads(r.content)
         return data
