@@ -227,7 +227,7 @@ class API():
         Comment: Gets journey details given the journey id
         Input: detailsId from get_departures or get_arrivals
         Output: details about a train
-        Special:
+        Special: changed by miltann (github see credits)
         """
         global Fahrplan_api
         request_link = "/journeyDetails/{}"
