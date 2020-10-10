@@ -5,9 +5,12 @@ Comment: API for interaction with the Deutsch Bahn REST APIs
 Special: You HAVE TO subscribe to the chosen "sub-APIs" for all methods to work
 """
 __author__ = "Janik Klauenberg"
+__credits__ = "github.com/miltann"
+
+__version__ = "0.1.5"
 __maintainer__ = "Janik Klauenberg"
-__version__ = "0.0.1"
-__status__ = "In development"
+__email__ = "support@klauenberg.eu"
+__status__ = "Mostly Working"
 import requests
 import json
 import datetime
@@ -226,11 +229,9 @@ class API():
         Output: details about a train
         Special: Currently nor working
         """
-        return "Not Working due to server Problems"
         global Fahrplan_api
         request_link = "/journeyDetails/{}"
-        link = Fahrplan_api + request_link.format(id)
+        link = Fahrplan_api + request_link.format(id).replace('%', '%25') # replace % as %25 because of percent encoding
         r = requests.get(link, headers={"Authorization" : self.auth_token})
-        print r.content
-        data = json.loads(r.content)
-        return data
+        #data = json.loads(r.content)
+        return r.content
