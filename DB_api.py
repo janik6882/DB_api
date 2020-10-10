@@ -231,7 +231,7 @@ class API():
         """
         global Fahrplan_api
         request_link = "/journeyDetails/{}"
-        link = Fahrplan_api + request_link.format(id).replace('%', '%25') # replace % as %25 because of percent encoding
+        link = Fahrplan_api + request_link.format(id).replace('%', '%25') # replaced % as %25 because of percent encoding
         r = requests.get(link, headers={"Authorization" : self.auth_token})
         data = json.loads(r.content)
         return data
